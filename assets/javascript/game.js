@@ -19,19 +19,20 @@ $(document).ready(function() {
     console.log(currentComputerOption.length);
 
     var repeatString = "";
+    
     function repeatStringNumTimes(string, times) {
-        
         while(times > 0) {
             repeatString += string;
             times--;
         };
         return repeatString;
     }
-
-    console.log(repeatStringNumTimes("_ ", currentComputerOption.length));
+    var resultOfRepeatStringFunction = repeatString;
+    console.log(resultOfRepeatStringFunction)
 
     var current = document.getElementById("currentWord");
-    current.textContent = repeatStringNumTimes("_ ", currentComputerOption.length);
+    current.textContent = repeatStringNumTimes("_", currentComputerOption.length);
+    console.log(repeatString)
 
     document.onkeyup = function(event) {
 
@@ -44,6 +45,7 @@ $(document).ready(function() {
 
         var rightGuess = currentComputerOption.indexOf(upperUserGuess);
         console.log(rightGuess);
+        var rightGuessArr = [];
 
         if(rightGuess === -1) {
             if(remaining > 1) {
@@ -57,29 +59,23 @@ $(document).ready(function() {
 
             main.find("#guessedLetter").append(upperUserGuess + ", ");
             
+        }else {
+            var indices = [];
+
+            for(var i=0; i<currentComputerOption.length;i++) {
+                if (currentComputerOption[i] === upperUserGuess) {
+                    indices.push(i);
+                    rightGuessArr.push(upperUserGuess);
+                    repeatString = repeatString.replace(repeatString.charAt(indices[0]), upperUserGuess); 
+                    console.log(repeatString);
+                    var current = document.getElementById("currentWord");
+                    current.textContent = repeatString;
+
+                }
+            }
+            console.log(indices);
+            console.log(rightGuessArr);
         }
-
-        
-
-
-     //---Need more time to modify how to change the "_ " to userGuess letter-------------
-        var indices = [];
-
-        for(var i=0; i<currentComputerOption.length;i++) {
-            if (currentComputerOption[i] === upperUserGuess) indices.push(i);
-        }
-        console.log(indices);
-
-        for(var j=0; j<currentComputerOption.length;j++) {
-            while (currentComputerOption[j] === upperUserGuess) {
-                repeatStringNumTimes("_ ", currentComputerOption.length)[j] = upperUserGuess;
-            };
-        }
-     //------------------------------------------------------------------------------------
-
     }
 });
 
-
-// var elUserGuss = document.getElementById("guessedLetter");
-// elUserGuss.textContent = userGuess;
