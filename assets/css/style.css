@@ -28,3 +28,13 @@ img {
     font-family: 'East Sea Dokdo', cursive;
     text-align: center;
 }
+
+#remaining {
+    font-size: 24px;
+    color: brown;
+}
+
+#guessedLetter {
+    font-size: 24px;
+    color: blue;
+}

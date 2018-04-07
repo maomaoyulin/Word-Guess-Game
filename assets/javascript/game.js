@@ -35,6 +35,7 @@ $(document).ready(function() {
 
     document.onkeyup = function(event) {
 
+        var main = $("body");
         var userGuess = event.key;
         console.log(userGuess);
 
@@ -42,26 +43,39 @@ $(document).ready(function() {
         console.log(upperUserGuess);
 
         var rightGuess = currentComputerOption.indexOf(upperUserGuess);
+        console.log(rightGuess);
 
-        if(rightGuess !== -1) {
-            remaining--;
-            elRemaining.textContent = remaining;
+        if(rightGuess === -1) {
+            if(remaining > 1) {
+                remaining--;
+                var elRemaining = document.getElementById("remaining");
+                elRemaining.textContent = remaining;
+            }else {
+                alert("You didn't make it! Try again!");
+                window.location.reload();
+            }
+
+            main.find("#guessedLetter").append(upperUserGuess + ", ");
+            
         }
+
         
+
+
+     //---Need more time to modify how to change the "_ " to userGuess letter-------------
         var indices = [];
 
         for(var i=0; i<currentComputerOption.length;i++) {
             if (currentComputerOption[i] === upperUserGuess) indices.push(i);
-        };
+        }
         console.log(indices);
 
         for(var j=0; j<currentComputerOption.length;j++) {
             while (currentComputerOption[j] === upperUserGuess) {
                 repeatStringNumTimes("_ ", currentComputerOption.length)[j] = upperUserGuess;
             };
-        };
-
-        
+        }
+     //------------------------------------------------------------------------------------
 
     }
 });
