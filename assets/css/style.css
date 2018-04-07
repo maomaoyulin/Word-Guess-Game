@@ -1,0 +1,30 @@
+
+html, .container {
+    background-color: bisque;
+    margin-bottom: 40px;
+}
+
+body {
+    background-color: bisque;
+}
+
+h1 {
+    font-family: 'Berkshire Swash', cursive;
+    color: rgb(66, 165, 179);
+    text-align: center;
+    font-size: 48px;
+}
+
+#game {
+    margin-top: 40px;
+}
+
+img {
+    width: 250px;
+    height: 550px;
+}
+
+.play {
+    font-family: 'East Sea Dokdo', cursive;
+    text-align: center;
+}
