@@ -28,14 +28,13 @@ $(document).ready(function() {
         return repeatString;
     }
     var resultOfRepeatStringFunction = repeatString;
-    console.log(resultOfRepeatStringFunction)
 
     var current = document.getElementById("currentWord");
     current.textContent = repeatStringNumTimes("_", currentComputerOption.length);
     console.log(repeatString)
 
     document.onkeyup = function(event) {
-
+        
         var main = $("body");
         var userGuess = event.key;
         console.log(userGuess);
@@ -60,22 +59,35 @@ $(document).ready(function() {
             main.find("#guessedLetter").append(upperUserGuess + ", ");
             
         }else {
-            var indices = [];
 
-            for(var i=0; i<currentComputerOption.length;i++) {
-                if (currentComputerOption[i] === upperUserGuess) {
-                    indices.push(i);
-                    rightGuessArr.push(upperUserGuess);
-                    repeatString = repeatString.replace(repeatString.charAt(indices[0]), upperUserGuess); 
-                    console.log(repeatString);
-                    var current = document.getElementById("currentWord");
-                    current.textContent = repeatString;
+            console.log(repeatString[rightGuess])
+            console.log(currentComputerOption[rightGuess])
 
+            var wordArr = currentComputerOption.split("");
+
+            var repeatArray = repeatString.split("");
+            for (var i = 0; i < wordArr.length; i++){
+                console.log(repeatArray)
+                console.log(wordArr[i])
+                if (upperUserGuess === wordArr[i]) {
+                    repeatArray[i] = upperUserGuess;
                 }
             }
-            console.log(indices);
-            console.log(rightGuessArr);
+            console.log(repeatArray);
+
+            repeatString = repeatArray.join("");
+            console.log(repeatString);
+            
+            var current = document.getElementById("currentWord");
+            current.textContent = repeatString;
+
+            if (repeatString === currentComputerOption) {
+                wins++;
+                var elWins = document.getElementById("wins");
+                elWins.textContent = wins;
+            }
         }
     }
+
 });
 
